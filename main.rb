@@ -2,12 +2,16 @@ require 'bundler/setup'
 require 'aws-sdk-core'
 require 'logger'
 
+$stdout.sync = true
+
 Log = Logger.new(STDOUT)
 
 AsgClient = Aws::AutoScaling::Client.new(
   access_key_id: ENV['AWS_ACCESS_KEY_ID'],
   secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
 )
+
+Log.info("starting... #{ARGV}")
 
 GROUP_NAME = ARGV[0]
 
